@@ -1,6 +1,6 @@
 {
   "name": "react-native-neos-cli",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A CLI to create new react native project",
   "main": "index.js",
   "bin": {
@@ -32,8 +32,10 @@
     "execa": "^5.1.1",
     "inquirer": "^8.1.5",
     "listr": "^0.14.3",
+    "listr-verbose-renderer": "^0.6.0",
     "ncp": "^2.0.0",
-    "pkg-install": "^1.0.0"
+    "pkg-install": "^1.0.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {}
 }

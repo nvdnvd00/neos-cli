@@ -33,14 +33,37 @@ async function promptForMissingOptions(options) {
       name: "name",
       message: "Please input project name",
       default: "AwesomeProject",
+      validate: function (input) {
+        // Declare function as asynchronous, and save the done callback
+        var done = this.async();
+        // Do async stuff
+        const regex = new RegExp(/^[a-zA-Z0-9]+$/);
+
+        const validateName = regex.test(input.trim());
+        if (!validateName)
+          return done(
+            "Project name cannot contain white space and special character"
+          );
+        else done(null, true);
+      },
     });
   }
+  // if (!options.rnversion) {
+  //   questions.push({
+  //     type: "input",
+  //     name: "rnversion",
+  //     message: "Please input react native version",
+  //     default: RN_VERSION,
+  //   });
+  // }
 
   const answers = await inquirer.prompt(questions);
+
   return {
     ...options,
     template: PROJECT_TYPES.find((i) => i.name === answers.template).template,
-    name: options.name || answers.name,
+    name: options.name || answers.name.trim(),
+    // rnversion: options.rnversion || answers.rnversion,
   };
 }
 

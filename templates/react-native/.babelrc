@@ -24,11 +24,7 @@
 					".json"
 				],
 				"alias": {
-					"src": "./src",
-					"components": "./src/components",
-					"store": "./src/store",
-					"utils": "./src/utils",
-					"theme": "./src/theme"
+					"^~(.+)": "./src/\\1"
 				}
 			}
 		],

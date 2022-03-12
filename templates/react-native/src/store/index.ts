@@ -4,7 +4,7 @@ import axios from 'axios';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import i18next from 'src/translations';
+import i18next from '~translations';
 
 const onRequest = (request: any, requestAction: any, store: any) => {
 	const { headers } = request;

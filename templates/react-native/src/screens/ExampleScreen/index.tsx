@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@redux-requests/react';
-import Box from 'components/Box';
-import Button from 'components/Button';
-import Text from 'components/Text';
 import React from 'react';
 import { Trans } from 'react-i18next';
 import { ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { getUsers } from 'store/apiAction';
+import Box from '~components/Box';
+import Button from '~components/Button';
+import Text from '~components/Text';
+import { getUsers } from '~store/apiAction';
 
 const HomeScreen: React.FC<any> = () => {
 	const navigation = useNavigation();

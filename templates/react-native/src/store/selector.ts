@@ -1,6 +1,6 @@
 import { getQuery } from '@redux-requests/core';
 import { useSelector } from 'react-redux';
-import { common } from 'store/mutationAction';
+import { common } from '~store/mutationAction';
 
 export const useCommon = (key: any, defaultValue: any) => {
 	return useSelector(

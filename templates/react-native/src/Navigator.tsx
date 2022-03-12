@@ -3,8 +3,8 @@ import { createNavigationContainerRef, NavigationContainer } from '@react-naviga
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { memo } from 'react';
 import { Linking } from 'react-native';
-import ExampleScreen from 'src/screens/ExampleScreen';
-import { SCREEN_NAME } from 'utils/constants';
+import ExampleScreen from '~screens/ExampleScreen';
+import { SCREEN_NAME } from '~utils/constants';
 
 const Stack = createStackNavigator();
 

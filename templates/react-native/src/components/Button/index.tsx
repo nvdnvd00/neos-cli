@@ -1,6 +1,7 @@
 import {
 	backgroundColor,
 	BackgroundColorProps,
+	BackgroundColorShorthandProps,
 	BorderProps,
 	createRestyleComponent,
 	createVariant,
@@ -13,21 +14,26 @@ import {
 	ShadowProps,
 	spacing,
 	SpacingProps,
+	SpacingShorthandProps,
 	VariantProps,
 } from '@shopify/restyle';
+import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Theme } from 'src/theme';
+import { Theme } from '~theme';
 
 type BtnProps = VariantProps<Theme, 'touchableVariants'> &
-	SpacingProps<Theme> &
-	LayoutProps<Theme> &
-	PositionProps<Theme> &
-	OpacityProps<Theme> &
 	BackgroundColorProps<Theme> &
+	BackgroundColorShorthandProps<Theme> &
 	BorderProps<Theme> &
+	LayoutProps<Theme> &
+	OpacityProps<Theme> &
+	PositionProps<Theme> &
 	ShadowProps<Theme> &
+	SpacingProps<Theme> &
+	SpacingShorthandProps<Theme> &
 	React.ComponentProps<typeof TouchableOpacity> & {
 		children?: any;
+		loading?: boolean;
 	};
 
 const Button = createRestyleComponent<BtnProps, Theme>(

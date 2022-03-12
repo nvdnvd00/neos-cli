@@ -2,10 +2,10 @@ import { ThemeProvider } from '@shopify/restyle';
 import React, { useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
-import theme from 'src/theme';
-import Navigator from './Navigator';
-import store from './store';
-import i18nextInstance from './translations';
+import Navigator from '~Navigator';
+import store from '~store';
+import theme from '~theme';
+import i18nextInstance from '~translations';
 
 const App = () => {
 	useEffect(() => {

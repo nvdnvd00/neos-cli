@@ -1,12 +1,12 @@
-## CLI for React Native 0.63
+## CLI for React Native
 
 ## Includes
 
+- Typescript
 - Redux-requests, redux-smart-actions, axios
 - React-navigation
 - I18next, react-i18next
 - @Shopify/restyle
-- Typescript
 
 ## Installation
 
@@ -24,4 +24,4 @@ neos-cli
 ## 👏 How to Contribute
 
 Want to contribute? Great!
-nvdnvd00@gmail.com
+Email to me: nvdnvd00@gmail.com

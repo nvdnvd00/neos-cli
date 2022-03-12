@@ -1,10 +1,10 @@
 import chalk from "chalk";
 import execa from "execa";
 import fs from "fs";
-import Listr from "listr";
+import { Listr } from "listr2";
 import ncp from "ncp";
 import path from "path";
-import { install } from "pkg-install";
+import { getPackageManager, install } from "pkg-install";
 import { promisify } from "util";
 import { PROJECT_TYPES, RN_DEV_PKG, RN_PKG } from "./constants";
 const VerboseRenderer = require("listr-verbose-renderer");
@@ -20,7 +20,7 @@ async function copyTemplateFiles(options) {
 
 async function initReactNativeProject(options) {
   const result = await execa.command(
-    `npx react-native init ${options.name} --template react-native-template-typescript@6.8.*`,
+    `npx react-native init ${options.name} --template react-native-template-typescript`,
     {
       cwd: options.targetDirectory,
     }
@@ -54,21 +54,26 @@ async function getReactNativeTasks(options) {
       },
       {
         title: "Install dependencies",
-        task: () =>
-          install(RN_PKG, {
-            prefer: "yarn",
+
+        task: async () => {
+          const pkgManager = await getPackageManager({ prefer: "yarn" });
+          return install(RN_PKG, {
+            prefer: pkgManager || "yarn",
             dev: false,
             cwd: options.projectDirectory,
-          }),
+          });
+        },
       },
       {
         title: "Install dev dependencies",
-        task: () =>
-          install(RN_DEV_PKG, {
-            prefer: "yarn",
+        task: async () => {
+          const pkgManager = await getPackageManager({ prefer: "yarn" });
+          return install(RN_DEV_PKG, {
+            prefer: pkgManager || "yarn",
             dev: true,
             cwd: options.projectDirectory,
-          }),
+          });
+        },
       },
       {
         title: "Install pod",
@@ -108,7 +113,14 @@ export async function createProject(options) {
   if (options.template === PROJECT_TYPES[0].template) {
     task = await getReactNativeTasks(options);
   }
-  await task.run();
-  console.log("%s Project ready", chalk.green.bold("DONE"));
+  try {
+    const context = await task.run();
+    console.log(
+      `%s Project ready: [${JSON.stringify(context)}]`,
+      chalk.green.bold("DONE")
+    );
+  } catch (e) {
+    console.error(e);
+  }
   return true;
 }
